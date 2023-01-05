@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/admin_penjuals"
+        android:title="Atur Penjual"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"/>
+
+    <item
+        android:id="@+id/admin_sayur"
+        android:title="Atur Produk"
+        android:icon="@drawable/ic_baseline_shopping_basket_24"/>
+
+</menu>
