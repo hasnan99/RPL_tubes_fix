@@ -68,6 +68,12 @@ public class beranda extends AppCompatActivity {
                         akun.putExtra("nama_user",nama);
                         startActivity(akun);
                         return true;
+
+                    case R.id.order:
+                        Intent order=new Intent(beranda.this,order_history.class);
+                        startActivity(order);
+                        return true;
+
                     case R.id.keranjang:
                         Intent cart=new Intent(beranda.this,summary_activity.class);
                         String nama_user=getIntent().getStringExtra("nama_user");

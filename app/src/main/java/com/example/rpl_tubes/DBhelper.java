@@ -304,4 +304,11 @@ public class DBhelper extends SQLiteOpenHelper {
         else
             return false;
     }
+
+    public Cursor getData()
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("Select * from pembayaran",null);
+        return cursor;
+    }
 }
