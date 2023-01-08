@@ -71,6 +71,8 @@ public class beranda extends AppCompatActivity {
 
                     case R.id.order:
                         Intent order=new Intent(beranda.this,order_history.class);
+                        String nama_order=getIntent().getStringExtra("nama_user");
+                        order.putExtra("nama_user",nama_order);
                         startActivity(order);
                         return true;
 

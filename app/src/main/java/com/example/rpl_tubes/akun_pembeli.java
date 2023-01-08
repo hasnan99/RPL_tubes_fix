@@ -50,14 +50,22 @@ public class akun_pembeli extends AppCompatActivity {
 
                     case R.id.akun_pembeli:
                         Intent akun = new Intent(akun_pembeli.this, akun_pembeli.class);
-                        String nama=getIntent().getStringExtra("nama");
-                        akun.putExtra("nama",nama);
+                        String nama=getIntent().getStringExtra("nama_user");
+                        akun.putExtra("nama_user",nama);
                         startActivity(akun);
                         return true;
+
+                    case R.id.order:
+                        Intent order=new Intent(akun_pembeli.this,order_history.class);
+                        String nama_order=getIntent().getStringExtra("nama_user");
+                        order.putExtra("nama_user",nama_order);
+                        startActivity(order);
+                        return true;
+
                     case R.id.keranjang:
                         Intent cart=new Intent(akun_pembeli.this,summary_activity.class);
-                        String nama_user=getIntent().getStringExtra("nama");
-                        cart.putExtra("nama",nama_user);
+                        String nama_user=getIntent().getStringExtra("nama_user");
+                        cart.putExtra("nama_user",nama_user);
                         startActivity(cart);
                         return true;
 

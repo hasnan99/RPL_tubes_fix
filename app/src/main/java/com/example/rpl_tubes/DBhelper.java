@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -27,6 +26,8 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("create table penjual(id_penjual INTEGER primary key autoincrement,nama text,email text,alamat text,password text,no_telepon text,status varchar)");
         db.execSQL("create table sayur(id_sayur INTEGER primary key autoincrement,nama_sayur varchar,harga_sayur INTEGER,stock INTEGER, deskripsi_sayur text,gambar_sayur blob)");
         db.execSQL("create table pembayaran (id INTEGER primary key autoincrement, nama text,jumlah text,total text,metode_bayar,status text)");
+        db.execSQL("create table admin(id_admin INTEGER primary key autoincrement, nama_admin text, email_admin text, password_admin text)");
+        db.execSQL("INSERT INTO admin(id_admin, nama_admin, email_admin, password_admin) VALUES (5601, 'omSayur', 'omSayur@gmail.com', 'sayuriaAdminWow666')");
         String SQL_TABLE = "CREATE TABLE " + dbcontract.orderentry.Table_name + " ("
                 + dbcontract.orderentry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +  dbcontract.orderentry.kolom_nama + " TEXT , "
@@ -45,19 +46,6 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists keranjang_belanja");
         db.execSQL("drop table if exists pembayaran");
 
-    }
-
-    public void tmbah_keranjang(String nama,String jumlah,String total,byte[] gambar){
-        SQLiteDatabase db=getWritableDatabase();
-        ContentValues values=new ContentValues();
-
-        values.put("nama",nama);
-        values.put("jumlah",jumlah);
-        values.put("total",total);
-        values.put("nama",nama);
-        values.put("gambar",gambar);
-
-        db.insert("keranjang_belanja",null,values);
     }
 
     public boolean insert_data_sayur(String nama_sayur,Integer harga_sayur,Integer stock,String deskripsi_sayur,Bitmap gambar_sayur){
@@ -183,13 +171,16 @@ public class DBhelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean delete_data_sayur(String nama_sayur){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean update_status(String id,String status){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues values=new ContentValues();
 
-        Cursor cursor=db.rawQuery("select * from sayur where nama_sayur=?",new String[]{nama_sayur});
+        values.put("status",status);
+
+        Cursor cursor=db.rawQuery("select * from pembayaran where id=?",new String[]{id});
         if (cursor.getCount()>0){
-            int result=db.delete("sayur","nama_sayur=?",new String[]{nama_sayur});
-            if (result==-1){
+            int result=db.update("pembayaran",values,"id=?",new String[]{id});
+            if (result== -1){
                 return false;
             }else {
                 return true;
@@ -198,12 +189,7 @@ public class DBhelper extends SQLiteOpenHelper {
         else {
             return false;
         }
-    }
 
-    public Cursor lihat_data_sayur(){
-        SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.rawQuery("select * from sayur",null);
-        return cursor;
     }
 
     public boolean insert_data_pembeli(String nama,String password,String email,String status){
@@ -299,6 +285,15 @@ public class DBhelper extends SQLiteOpenHelper {
     public Boolean check_user_password_penjual(String nama,String password){
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.rawQuery("select * from penjual where nama=? and password=? and status='penjual' ",new String[]{nama,password});
+        if (cursor.getCount()>0)
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean check_user_password_admin(String nama,String password){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.rawQuery("select * from admin where nama_admin=? and password_admin=?",new String[]{nama,password});
         if (cursor.getCount()>0)
             return true;
         else

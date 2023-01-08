@@ -11,4 +11,9 @@
         <item>penjual</item>
         <item>pembeli</item>
     </string-array>
+    <string-array name="spinner2">
+        <item>Proses</item>
+        <item>Pengantaran</item>
+        <item>Selesai</item>
+    </string-array>
 </resources>

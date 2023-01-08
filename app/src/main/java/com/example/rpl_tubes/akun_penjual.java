@@ -48,8 +48,15 @@ public class akun_penjual extends AppCompatActivity {
                         startActivity(intent);
                         return true;
 
+                    case R.id.order_penjual:
+                        Intent order = new Intent(akun_penjual.this,order_penjual.class);
+                        String nama_order=getIntent().getStringExtra("nama");
+                        order.putExtra("nama",nama_order);
+                        startActivity(order);
+                        return true;
+
                     case R.id.akun:
-                        Intent akun = new Intent(akun_penjual.this,akun_penjual.class);
+                        Intent akun = new Intent(akun_penjual.this, akun_penjual.class);
                         String nama=getIntent().getStringExtra("nama");
                         akun.putExtra("nama",nama);
                         startActivity(akun);

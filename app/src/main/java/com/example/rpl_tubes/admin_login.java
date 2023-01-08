@@ -1,16 +1,16 @@
 package com.example.rpl_tubes;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.text.TextUtils;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.Toast;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class admin_login extends AppCompatActivity {
     EditText username,password;
@@ -36,20 +36,13 @@ public class admin_login extends AppCompatActivity {
                 if (TextUtils.isEmpty(nama)||TextUtils.isEmpty(pass))
                     Toast.makeText(admin_login.this,"Tidak boleh kosong",Toast.LENGTH_SHORT).show();
                 else {
-                    boolean check_user_password_pembeli = db.check_user_password_pembeli(nama, pass);
-                    boolean check_user_password_penjual=db.check_user_password_penjual(nama,pass);
-                    if (check_user_password_pembeli == true){
+                    boolean check_user_password_admin = db.check_user_password_admin(nama, pass);
+                    if (check_user_password_admin == true) {
                         Toast.makeText(admin_login.this, "Login berhasil", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), beranda.class);
-                        intent.putExtra("nama_user",nama);
+                        Intent intent = new Intent(getApplicationContext(), firstHome_admin.class);
+                        intent.putExtra("nama_user", nama);
                         startActivity(intent);
-                    } else if(check_user_password_penjual==true){
-                        Toast.makeText(admin_login.this, "Login berhasil", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), beranda_penjual.class);
-                        intent.putExtra("nama",nama);
-                        startActivity(intent);
-                    }
-                    else{
+                    }else{
                         Toast.makeText(admin_login.this,"Login Gagal",Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -58,8 +51,5 @@ public class admin_login extends AppCompatActivity {
 
 
     }
-    public void signup(View view){
-        Intent intent=new Intent(this,signup.class);
-        startActivity(intent);
-    }
+
 }
