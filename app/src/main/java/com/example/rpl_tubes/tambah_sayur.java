@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,16 +65,22 @@ public class tambah_sayur extends AppCompatActivity {
                 String nm_sayur=nama_sayur.getText().toString();
                 String hrg=harga_sayur.getText().toString();
                 String stk=stok_sayur.getText().toString();
-                Integer hrg_sayur=Integer.parseInt(hrg);
-                Integer st_sayur=Integer.parseInt(stk);
                 String ds_sayur=deskripsi_sayur.getText().toString();
 
-                boolean insert=db.insert_data_sayur(nm_sayur,hrg_sayur,st_sayur,ds_sayur,imagetostore);
-                if(insert==true){
-                    Toast.makeText(tambah_sayur.this,"Sayur berhasil di tambah",Toast.LENGTH_SHORT).show();
-                    beranda_penjual.bp.refreshlist();
-                    finish();
+                if (TextUtils.isEmpty(nm_sayur)||TextUtils.isEmpty(hrg)||TextUtils.isEmpty(stk)||TextUtils.isEmpty(ds_sayur)){
+                    Toast.makeText(tambah_sayur.this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                }else{
+                    Integer hrg_sayur=Integer.parseInt(hrg);
+                    Integer st_sayur=Integer.parseInt(stk);
+                    boolean insert=db.insert_data_sayur(nm_sayur,hrg_sayur,st_sayur,ds_sayur,imagetostore);
+                    if(insert==true){
+                        Toast.makeText(tambah_sayur.this,"Sayur berhasil di tambah",Toast.LENGTH_SHORT).show();
+                        beranda_penjual.bp.refreshlist();
+                        finish();
+                    }
                 }
+
+
 
             }
         });
