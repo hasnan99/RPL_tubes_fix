@@ -126,7 +126,12 @@ public class detail_produk extends AppCompatActivity implements LoaderManager.Lo
 
         values.put(dbcontract.orderentry.kolom_nama,nama);
         values.put(dbcontract.orderentry.kolom_total,harga);
-        values.put(dbcontract.orderentry.kolom_jumlah,quantity);
+        if(quantity.equals(0)){
+            Toast.makeText(detail_produk.this,"Quantity tidak boleh 0",Toast.LENGTH_SHORT).show();
+        }else{
+            values.put(dbcontract.orderentry.kolom_jumlah,quantity);
+        }
+
 
         if (mycarturi==null){
             Uri newuri=getContentResolver().insert(dbcontract.orderentry.content_uri,values );
