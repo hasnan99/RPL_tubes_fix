@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class lihat_order extends AppCompatActivity {
 
-    TextView nama_sayur,jumlah,total,metode,status;
+    TextView nama_sayur,jumlah,total,metode,status,alamat_pengantaran;
     protected Cursor cursor;
     DBhelper db;
 
@@ -24,6 +24,7 @@ public class lihat_order extends AppCompatActivity {
         total=findViewById(R.id.textView39);
         metode=findViewById(R.id.textView41);
         status=findViewById(R.id.textView43);
+        alamat_pengantaran=findViewById(R.id.textView47);
         db=new DBhelper(this);
 
         SQLiteDatabase db1=db.getReadableDatabase();
@@ -37,6 +38,7 @@ public class lihat_order extends AppCompatActivity {
             total.setText(cursor.getString(3).toString());
             metode.setText(cursor.getString(4).toString());
             status.setText(cursor.getString(5).toString());
+            alamat_pengantaran.setText(cursor.getString(6).toString());
         }
 
     }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class update_order extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    TextView nama_sayur,jumlah,total,metode,status,id_status;
+    TextView nama_sayur,jumlah,total,metode,status,id_status,alamat_pengantaran;
     protected Cursor cursor;
     Button btn_update;
     Spinner spinner;
@@ -33,6 +33,7 @@ public class update_order extends AppCompatActivity implements AdapterView.OnIte
         total=findViewById(R.id.textView39);
         metode=findViewById(R.id.textView41);
         spinner=findViewById(R.id.spinner2);
+        alamat_pengantaran=findViewById(R.id.textView51);
         btn_update=findViewById(R.id.button4);
         db=new DBhelper(this);
 
@@ -52,6 +53,7 @@ public class update_order extends AppCompatActivity implements AdapterView.OnIte
             jumlah.setText(cursor.getString(2).toString());
             total.setText(cursor.getString(3).toString());
             metode.setText(cursor.getString(4).toString());
+            alamat_pengantaran.setText(cursor.getString(6));
         }
     }
 

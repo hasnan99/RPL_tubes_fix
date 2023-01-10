@@ -103,8 +103,8 @@ public class beranda extends AppCompatActivity {
                 return true;
             }
         });
-        findid();
-        displaydata();
+        pencariansayur();
+        lihatsayur();
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
 
@@ -137,7 +137,7 @@ public class beranda extends AppCompatActivity {
         }
     }
 
-    private void displaydata() {
+    private void lihatsayur() {
         sqLiteDatabase=db.getReadableDatabase();
         Cursor cursor=sqLiteDatabase.rawQuery("select * from sayur",null);
         ArrayList<ADDmodel>adDmodels=new ArrayList<>();
@@ -152,7 +152,7 @@ public class beranda extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void findid() {
+    private void pencariansayur() {
         recyclerView=findViewById(R.id.view1);
         util itemdecorator=new util(50);
         recyclerView.addItemDecoration(itemdecorator);

@@ -25,7 +25,7 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("create table pembeli(id_pembeli INTEGER primary key autoincrement,nama text,password text,email text,alamat text,no_telepon text,status varchar)");
         db.execSQL("create table penjual(id_penjual INTEGER primary key autoincrement,nama text,email text,alamat text,password text,no_telepon text,status varchar)");
         db.execSQL("create table sayur(id_sayur INTEGER primary key autoincrement,nama_sayur varchar,harga_sayur INTEGER,stock INTEGER, deskripsi_sayur text,gambar_sayur blob)");
-        db.execSQL("create table pembayaran (id INTEGER primary key autoincrement, nama text,jumlah text,total text,metode_bayar,status text)");
+        db.execSQL("create table pembayaran (id INTEGER primary key autoincrement, nama text,jumlah text,total text,metode_bayar,status text,alamat text)");
         db.execSQL("create table admin(id_admin INTEGER primary key autoincrement, nama_admin text, email_admin text, password_admin text)");
         db.execSQL("INSERT INTO admin(id_admin, nama_admin, email_admin, password_admin) VALUES (5601, 'omSayur', 'omSayur@gmail.com', 'sayuriaAdminWow666')");
         String SQL_TABLE = "CREATE TABLE " + dbcontract.orderentry.Table_name + " ("
@@ -240,7 +240,7 @@ public class DBhelper extends SQLiteOpenHelper {
         return  arrayList;
     }
 
-    public boolean insert_data_pembayaran(String nama,String jumlah,String total,String metode,String status){
+    public boolean insert_data_pembayaran(String nama,String jumlah,String total,String metode,String status,String alamat){
 
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
@@ -250,6 +250,7 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put("total",total);
         values.put("metode_bayar",metode);
         values.put("status",status);
+        values.put("alamat",alamat);
 
         long result=db.insert("pembayaran",null,values);
         if(result==-1) return  false;

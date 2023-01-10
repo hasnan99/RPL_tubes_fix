@@ -83,12 +83,12 @@ public class summary_activity extends AppCompatActivity implements LoaderManager
                 int bayar=pilih.getCheckedRadioButtonId();
                 pilih_pembayaran=findViewById(bayar);
                 pembayaran=pilih_pembayaran.getText().toString();
-                beli();
+                beli_sayur();
             }
         });
     }
 
-    private void beli() {
+    private void beli_sayur() {
         SQLiteDatabase db2 = db.getReadableDatabase();
         cursor = db2.rawQuery("SELECT  * from keranjang_belanja", null);
         cursor.moveToFirst();
@@ -102,11 +102,13 @@ public class summary_activity extends AppCompatActivity implements LoaderManager
         String jumlah_barang = String.valueOf(db.getall_jumlah_sayur());
         String harga_total=String.valueOf(total_harga.getText().toString());
         String bayar=String.valueOf(pembayaran);
+        String alamat_beli=alamat.getText().toString();
         status="proses";
 
-        boolean insert=db.insert_data_pembayaran(nama_barang,jumlah_barang,harga_total,bayar,status);
+        boolean insert=db.insert_data_pembayaran(nama_barang,jumlah_barang,harga_total,bayar,status,alamat_beli);
         if(insert==true){
             Toast.makeText(summary_activity.this,"Berhasil melakukan pembayaran",Toast.LENGTH_SHORT).show();
+            int delete=getContentResolver().delete(dbcontract.orderentry.content_uri,null,null);
             Intent intent=new Intent(getApplicationContext(),beranda.class);
             startActivity(intent);
         }
