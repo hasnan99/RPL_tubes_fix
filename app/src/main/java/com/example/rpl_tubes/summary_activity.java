@@ -80,10 +80,15 @@ public class summary_activity extends AppCompatActivity implements LoaderManager
         beli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int bayar=pilih.getCheckedRadioButtonId();
-                pilih_pembayaran=findViewById(bayar);
-                pembayaran=pilih_pembayaran.getText().toString();
-                beli_sayur();
+                try {
+                    int bayar=pilih.getCheckedRadioButtonId();
+                    pilih_pembayaran=findViewById(bayar);
+                    pembayaran=pilih_pembayaran.getText().toString();
+                    beli_sayur();
+                }catch (NullPointerException e){
+                    Toast.makeText(summary_activity.this, "Metode Pembayaran Harus Dipilih", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
