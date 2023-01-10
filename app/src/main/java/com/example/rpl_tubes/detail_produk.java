@@ -120,27 +120,29 @@ public class detail_produk extends AppCompatActivity implements LoaderManager.Lo
         String harga_baru=String.valueOf(total_harga);
         String harga=(harga_baru);
         String quantity=jumlah.getText().toString();
-
-
         ContentValues values=new ContentValues();
-
-        values.put(dbcontract.orderentry.kolom_nama,nama);
-        values.put(dbcontract.orderentry.kolom_total,harga);
-        if(quantity.equals(0)){
-            Toast.makeText(detail_produk.this,"Quantity tidak boleh 0",Toast.LENGTH_SHORT).show();
+        if (quantity.equals("0")){
+            Toast.makeText(detail_produk.this,"Jumlah sayur tidak boleh 0",Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(detail_produk.this,beranda.class);
+            startActivity(intent);
         }else{
+
+            values.put(dbcontract.orderentry.kolom_nama,nama);
+            values.put(dbcontract.orderentry.kolom_total,harga);
             values.put(dbcontract.orderentry.kolom_jumlah,quantity);
-        }
 
-
-        if (mycarturi==null){
-            Uri newuri=getContentResolver().insert(dbcontract.orderentry.content_uri,values );
-            if (newuri==null){
-                Toast.makeText(this,"gagal masuk keranjang",Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(this,"Berhasil masuk keranjang",Toast.LENGTH_SHORT).show();
+            if (mycarturi==null){
+                Uri newuri=getContentResolver().insert(dbcontract.orderentry.content_uri,values );
+                if (newuri==null){
+                    Toast.makeText(this,"gagal masuk keranjang",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this,"Berhasil masuk keranjang",Toast.LENGTH_SHORT).show();
+                }
             }
+
         }
+
+
         allvalues=true;
         return allvalues;
 
