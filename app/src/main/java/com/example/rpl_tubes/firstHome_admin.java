@@ -71,7 +71,7 @@ public class firstHome_admin extends AppCompatActivity {
             daftar2[i]=cursor.getString(1).toString();
         }
         listView=(ListView)findViewById(R.id.list1);
-        listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, daftar2));
+        listView.setAdapter(new ArrayAdapter(this,R.layout.edit_llistview ,daftar2));
         listView.setSelected(true);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

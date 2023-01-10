@@ -68,7 +68,7 @@ public class homeAdmin_sayur extends AppCompatActivity {
             daftar[i]=cursor.getString(1).toString();
         }
         listView=(ListView)findViewById(R.id.list1);
-        listView.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,daftar));
+        listView.setAdapter(new ArrayAdapter(this, R.layout.edit_llistview,daftar));
         listView.setSelected(true);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
