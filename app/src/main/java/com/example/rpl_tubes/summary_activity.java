@@ -63,7 +63,7 @@ public class summary_activity extends AppCompatActivity implements LoaderManager
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int delete=getContentResolver().delete(dbcontract.orderentry.content_uri,null,null);
+                int hapus_keranjang=getContentResolver().delete(dbcontract.orderentry.content_uri,null,null);
 
 
             }
@@ -113,7 +113,7 @@ public class summary_activity extends AppCompatActivity implements LoaderManager
         boolean insert=db.insert_data_pembayaran(nama_barang,jumlah_barang,harga_total,bayar,status,alamat_beli);
         if(insert==true){
             Toast.makeText(summary_activity.this,"Berhasil melakukan pembayaran",Toast.LENGTH_SHORT).show();
-            int delete=getContentResolver().delete(dbcontract.orderentry.content_uri,null,null);
+            int hapus_keranjang=getContentResolver().delete(dbcontract.orderentry.content_uri,null,null);
             Intent intent=new Intent(getApplicationContext(),beranda.class);
             startActivity(intent);
         }
