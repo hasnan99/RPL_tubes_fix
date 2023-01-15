@@ -64,9 +64,9 @@ public class order_penjual extends AppCompatActivity {
 
         bp=this;
         db=new DBhelper(this);
-        refreshlist();
+        lihat_order();
     }
-    public void refreshlist() {
+    public void lihat_order() {
         SQLiteDatabase db1= db.getReadableDatabase();
         cursor=db1.rawQuery("select * from pembayaran",null);
         daftar=new String[cursor.getCount()];
