@@ -53,11 +53,11 @@ public class homeAdmin_user extends AppCompatActivity {
         });
         bpUser =this;
         db=new DBhelper(this);
-        refreshlist();
+        lihat_penjual_Admin();
 
     }
 
-    public void refreshlist() {
+    public void lihat_penjual_Admin() {
         SQLiteDatabase db1= db.getReadableDatabase();
         cursor=db1.rawQuery("select * from penjual",null);
         daftar2 =new String[cursor.getCount()];
@@ -84,7 +84,7 @@ public class homeAdmin_user extends AppCompatActivity {
                             case 0:
                                 SQLiteDatabase del=db.getReadableDatabase();
                                 del.execSQL("delete from penjual where nama ='"+selection+"'");
-                                refreshlist();
+                                lihat_penjual_Admin();
                                 break;
                         }
                     }

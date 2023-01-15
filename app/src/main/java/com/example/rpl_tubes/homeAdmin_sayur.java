@@ -54,11 +54,11 @@ public class homeAdmin_sayur extends AppCompatActivity {
 
         bp=this;
         db=new DBhelper(this);
-        refreshlist();
+        lihat_sayur_admin();
 
     }
 
-    public void refreshlist() {
+    public void lihat_sayur_admin() {
         SQLiteDatabase db1= db.getReadableDatabase();
         cursor=db1.rawQuery("select * from sayur",null);
         daftar=new String[cursor.getCount()];
@@ -91,7 +91,7 @@ public class homeAdmin_sayur extends AppCompatActivity {
                             case 1:
                                 SQLiteDatabase del=db.getReadableDatabase();
                                 del.execSQL("delete from sayur where nama_sayur ='"+selection+"'");
-                                refreshlist();
+                                lihat_sayur_admin();
                                 break;
 
                         }
